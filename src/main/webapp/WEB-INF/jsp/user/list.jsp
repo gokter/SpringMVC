@@ -12,6 +12,7 @@
 	<c:forEach var="me" items="${users }">
 		<h1>
 		<a href="${pageContext.request.contextPath }/user/${me.value.username }">${me.value.username }</a>-----${me.value.password }-----${me.value.nickname }-----${me.value.email }
+		<a href="${pageContext.request.contextPath }/user/${me.value.username}/update">update</a>
 		</h1>
 	</c:forEach>
 </body>

@@ -28,6 +28,21 @@ public class UserController {
 		map.put("e", new User("e", "e", "e", "e@e.com"));
 	}
 
+	@RequestMapping(value = "/{username}/update", method = RequestMethod.GET)
+	public String update(@PathVariable String username, Model model) {
+		model.addAttribute(map.get(username));
+		return "user/update";
+	}
+
+	@RequestMapping(value = "/{username}/update", method = RequestMethod.POST)
+	public String update(@PathVariable String username, @ModelAttribute @Valid User user, BindingResult result) {
+		if (result.hasErrors()) {
+			return "user/update";
+		}
+		map.put(username, user);
+		return "redirect:/user";
+	}
+
 	@RequestMapping({ "", "/", "/users", "/list" })
 	public String list(Model model) {
 		model.addAttribute("users", map);
@@ -53,4 +68,5 @@ public class UserController {
 		model.addAttribute(map.get(username) != null ? map.get(username) : new User());
 		return "user/show";
 	}
+
 }
