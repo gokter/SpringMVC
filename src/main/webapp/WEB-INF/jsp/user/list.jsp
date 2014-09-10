@@ -8,7 +8,7 @@
 <title>user list</title>
 </head>
 <body>
-	<a href="${pageContext.request.contextPath }/user/add">add user</a>
+	<a href="${pageContext.request.contextPath }/user/add">add user</a><br/>Current user:${sessionScope.loginUser.username }
 	<c:forEach var="me" items="${users }">
 		<h1>
 		<a href="${pageContext.request.contextPath }/user/${me.value.username }">${me.value.username }</a>-----${me.value.password }-----${me.value.nickname }-----${me.value.email }
