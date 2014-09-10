@@ -4,14 +4,12 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,11 +31,11 @@ public class UserController {
 		map.put("e", new User("e", "e", "e", "e@e.com"));
 	}
 
-	@ExceptionHandler(UserException.class)
-	public String handleException(UserException exception, HttpServletRequest request) {
-		request.setAttribute("error", exception.getMessage());
-		return "error";
-	}
+	// @ExceptionHandler(UserException.class)
+	// public String handleException(UserException exception, HttpServletRequest request) {
+	// request.setAttribute("error", exception.getMessage());
+	// return "error";
+	// }
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String login(@ModelAttribute User user) {
