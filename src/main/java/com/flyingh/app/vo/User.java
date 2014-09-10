@@ -1,5 +1,10 @@
 package com.flyingh.app.vo;
 
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotEmpty;
+
 public class User {
 	private String username;
 	private String password;
@@ -17,6 +22,7 @@ public class User {
 		this.email = email;
 	}
 
+	@NotEmpty(message = "username should not be empty")
 	public String getUsername() {
 		return username;
 	}
@@ -25,6 +31,7 @@ public class User {
 		this.username = username;
 	}
 
+	@Size(min = 5, max = 15, message = "password's length should be between 5 and 15")
 	public String getPassword() {
 		return password;
 	}
@@ -41,6 +48,8 @@ public class User {
 		this.nickname = nickname;
 	}
 
+	@NotEmpty(message = "email should be not empty")
+	@Email(message = "email's format is wrong")
 	public String getEmail() {
 		return email;
 	}

@@ -3,9 +3,14 @@ package com.flyingh.app;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.flyingh.app.vo.User;
 
@@ -27,4 +32,19 @@ public class UserController {
 		model.addAttribute("users", map);
 		return "user/list";
 	}
+
+	@RequestMapping(value = "/add", method = RequestMethod.GET)
+	public String add(@ModelAttribute("user") User user) {
+		return "user/add";
+	}
+
+	@RequestMapping(value = "/add", method = RequestMethod.POST)
+	public String add(@Valid User user, BindingResult result) {
+		if (result.hasErrors()) {
+			return "user/add";
+		}
+		map.put(user.getUsername(), user);
+		return "redirect:/user/list";
+	}
+
 }

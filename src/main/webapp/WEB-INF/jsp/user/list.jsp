@@ -8,10 +8,9 @@
 <title>user list</title>
 </head>
 <body>
-	
+	<a href="${pageContext.request.contextPath }/user/add">add user</a>
 	<c:forEach var="me" items="${users }">
-		<h1>
-			${me.value.username }-----${me.value.password }-----${me.value.nickname }-----${me.value.email }
+		<h1>${me.value.username }-----${me.value.password }-----${me.value.nickname }-----${me.value.email }
 		</h1>
 	</c:forEach>
 </body>
