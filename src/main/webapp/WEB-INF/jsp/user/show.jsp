@@ -5,14 +5,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>user list</title>
+<title>Insert title here</title>
 </head>
 <body>
-	<a href="${pageContext.request.contextPath }/user/add">add user</a>
-	<c:forEach var="me" items="${users }">
-		<h1>
-		<a href="${pageContext.request.contextPath }/user/${me.value.username }">${me.value.username }</a>-----${me.value.password }-----${me.value.nickname }-----${me.value.email }
-		</h1>
-	</c:forEach>
+	<h1>${user.username }</h1>
+	<h1>${user.password }</h1>
+	<h1>${user.nickname }</h1>
+	<h1>${user.email }</h1>
 </body>
 </html>
