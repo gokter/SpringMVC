@@ -13,6 +13,7 @@
 		<h1>
 		<a href="${pageContext.request.contextPath }/user/${me.value.username }">${me.value.username }</a>-----${me.value.password }-----${me.value.nickname }-----${me.value.email }
 		<a href="${pageContext.request.contextPath }/user/${me.value.username}/update">update</a>
+		<a href="${pageContext.request.contextPath }/user/${me.value.username }/delete">delete</a>
 		</h1>
 	</c:forEach>
 </body>

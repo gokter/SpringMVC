@@ -28,6 +28,12 @@ public class UserController {
 		map.put("e", new User("e", "e", "e", "e@e.com"));
 	}
 
+	@RequestMapping(value = "/{username}/delete")
+	public String delete(@PathVariable String username) {
+		map.remove(username);
+		return "redirect:/user/list";
+	}
+
 	@RequestMapping(value = "/{username}/update", method = RequestMethod.GET)
 	public String update(@PathVariable String username, Model model) {
 		model.addAttribute(map.get(username));
