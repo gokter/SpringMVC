@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.flyingh.app.vo.User;
@@ -113,4 +114,9 @@ public class UserController {
 		return "user/show";
 	}
 
+	@RequestMapping(value = "/{username}/json", method = RequestMethod.GET)
+	@ResponseBody
+	public User show(@PathVariable String username) {
+		return map.get(username);
+	}
 }
