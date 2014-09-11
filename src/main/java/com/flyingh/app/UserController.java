@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.flyingh.app.vo.User;
@@ -93,14 +94,15 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	public String add(@Valid User user, BindingResult result, MultipartFile file, HttpServletRequest request) throws IOException {
+	public String add(@Valid User user, BindingResult result, @RequestParam("files") MultipartFile[] files, HttpServletRequest request)
+			throws IOException {
 		if (result.hasErrors()) {
 			return "user/add";
 		}
-		System.out.println(file.getName() + "-->" + file.getOriginalFilename() + "--->" + file.getContentType());
 		final String realPath = request.getServletContext().getRealPath("/WEB-INF/upload");
-		System.out.println(realPath);
-		FileUtils.copyInputStreamToFile(file.getInputStream(), new File(realPath, file.getOriginalFilename()));
+		for (final MultipartFile multipartFile : files) {
+			FileUtils.copyInputStreamToFile(multipartFile.getInputStream(), new File(realPath, multipartFile.getOriginalFilename()));
+		}
 		map.put(user.getUsername(), user);
 		return "redirect:/user/list";
 	}

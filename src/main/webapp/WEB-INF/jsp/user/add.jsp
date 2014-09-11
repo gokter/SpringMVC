@@ -21,7 +21,11 @@
 		Email:<form:input path="email" />
 		<form:errors path="email" />
 		<br />
-		file:<input type="file" name="file">
+		file:<input type="file" name="files">
+		<br />
+		file:<input type="file" name="files">
+		<br />
+		file:<input type="file" name="files">
 		<br />
 		<input type="submit">
 	</form:form>
