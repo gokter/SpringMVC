@@ -1,12 +1,16 @@
 package com.flyingh.app;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
+import org.apache.commons.io.FileUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -14,6 +18,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.flyingh.app.vo.User;
 import com.flyingh.exception.UserException;
@@ -88,10 +93,14 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	public String add(@Valid User user, BindingResult result) {
+	public String add(@Valid User user, BindingResult result, MultipartFile file, HttpServletRequest request) throws IOException {
 		if (result.hasErrors()) {
 			return "user/add";
 		}
+		System.out.println(file.getName() + "-->" + file.getOriginalFilename() + "--->" + file.getContentType());
+		final String realPath = request.getServletContext().getRealPath("/WEB-INF/upload");
+		System.out.println(realPath);
+		FileUtils.copyInputStreamToFile(file.getInputStream(), new File(realPath, file.getOriginalFilename()));
 		map.put(user.getUsername(), user);
 		return "redirect:/user/list";
 	}

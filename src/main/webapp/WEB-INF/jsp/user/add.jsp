@@ -8,7 +8,7 @@
 <title>add user</title>
 </head>
 <body>
-	<form:form method="post" modelAttribute="user">
+	<form:form method="post" modelAttribute="user" enctype="multipart/form-data">
 		Username:<form:input path="username" />
 		<form:errors path="username" />
 		<br />
@@ -20,6 +20,8 @@
 		<br />
 		Email:<form:input path="email" />
 		<form:errors path="email" />
+		<br />
+		file:<input type="file" name="file">
 		<br />
 		<input type="submit">
 	</form:form>
