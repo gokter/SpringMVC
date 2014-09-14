@@ -18,4 +18,6 @@
 			<bean class="com.flyingh.ws.server.interceptor.AuthenticationInterceptor"></bean>
 		</jaxws:inInterceptors>
 	</jaxws:endpoint>
+	<jaxws:client id="mobileCodeWSSoap" serviceClass="cn.com.webxml.MobileCodeWSSoap"
+		address="http://webservice.webxml.com.cn/WebServices/MobileCodeWS.asmx"></jaxws:client>
 </beans>
